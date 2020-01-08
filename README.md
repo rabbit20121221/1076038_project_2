@@ -5,36 +5,36 @@
 輸入 input 檔案的檔名。
 
 ## 程式的流程
-	1. 讀入 T/NT  序列	2. 輸入 Predictor 初始狀態00	3. T/N預測 4. 計算 Misprediction rate
-	5. 輸出的最終結果
+	1. 輸入指令	2. 根據cycle	3. 指定暫存器 4. 輸出結果
 
 ## FUNCTION
-bool two_bit_predictor(int index);
-此 function 用來預測 T 或 NT，
-並回傳至下一個狀態。
+void algorithm(); --> 實作指令的排序
 
 ## INPUT
-輸入檔包含 T(Taken) 及 NT(Not Taken)。
+輸入檔包含各種指令。
 * **Example:** test1.txt
 
-		T NT T T T NT NT NT NT
-		NT NT T T T T NT T NT
-
-簡單來說以上總共有兩筆的測資
+		ADDI F1, F2, 1  
+		SUB F1, F3, F4  
+		DIV F1, F2, F3  
+		MUL F2, F3, F4  
+		ADD F2, F4, F2  
+		ADDI F4, F1, 2  
+		MUL F5, F5, F5  
+		ADD F1, F4, F4  
 
 ## OUTPUT
-輸出檔包含 Prediction、Miss or not 以及 Misprediction rate。
-* **Example:** output.txt
+輸出檔包含 RF、RF、RS 以及 Buffer。
+* **Example:** output_10.txt  
 	
-State: 00 01 00 01 10 11 10 01 00 
-Input: T NT T T T NT NT NT NT 
-Prediction: N N N N T T T N N 
-Miss or not: X O X X O X X O O 
-Misprediction rate: 5/9
+		Cycle: 10  
   
- State: 00 00 00 01 10 11 11 10 11 
- Input: NT NT T T T T NT T NT 
- Prediction: N N N N T T T T T 
- Miss or not: O O X X O O X O X 
- Misprediction rate: 4/9
+		RF:   
+		F1: 0 F2: 2 F3: 4 F4: 6 F5: 8   
+		RAT:   
+		F1: RS4 F2: RS1 F3:  F4: RS2 F5:    
+		RS:  RS1: + 6 RS5   RS2: +  RS4 2   RS3    
+		Buffer: X  
+		 RS4: / 2 4  RS5: * 4 6   
+		Buffer: (RS4) 2 / 4  
 
