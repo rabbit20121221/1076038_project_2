@@ -1,0 +1,11 @@
+Cycle: 10
+
+RF: 
+F1: 0 F2: 2 F3: 4 F4: 6 F5: 8 
+RAT: 
+F1: RS4 F2: RS1 F3:  F4: RS2 F5:  
+RS:  RS1: + 6 RS5   RS2: +  RS4 2   RS3  
+Buffer: X
+ RS4: / 2 4  RS5: * 4 6 
+Buffer: (RS4) 2 / 4
+
